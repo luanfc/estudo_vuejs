@@ -1,0 +1,9 @@
+Propriedade personalizada, que não é nativa do html, mas o html permite que sejam adicionadas novas propriedades.
+
+<p c3r-bind="abc">Usando VueJS!</p>
+
+console >>>
+document.querySelector('[c3r-bind]')
+document.querySelector('[c3r-bind]').getAttribute('c3r-bind')
+
+Diretivas são, propriedades personalizadas e essas propriedades são interpretadas pelo Vue e a nomenclautura que o Vue usa é dizer que são diretiras, ou seja, as propriedades que são interpretadas pelo Vue.
