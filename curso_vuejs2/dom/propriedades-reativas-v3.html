@@ -1,0 +1,64 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="contador2++">Aumentar 2</button>
+    <button v-on:click="diminuir">Diminiur</button>
+    <p>Contador: {{ contador }} | {{ contador2 }}</p>
+    <p>Resultado: {{ resultado }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            contador2: 0
+        },
+        computed: {
+            /*
+            Deve ser chamado como um atributo (resultado) e não como uma funçaão (resultado() )  
+            Chamado somente quando algum atributo do método computado sofrer alguma ação 
+            */
+            resultado() {
+                console.log('metodo computed resultado chamado...')
+                return this.contador >= 5 ?
+                    'Maior ou igual a 5' : 'Menor que 5'
+            }
+        },
+        watch: {
+            /*
+            O watch deve haver comflito e deve ser dito exatamente qual é o nome da propriedade que você quer monitorar
+            Propriedades computados são sicronas. Chamou uma vez obrigatoriamente deve-se retornar um valor
+            No watch você monitora uma propriedade e executa uma ação quando a propriedade monitorada sofre alguma ação
+            Por exemplo:
+                Temos uma combo de municipios que ao selecionar os municipios ela carrega outra combo com as cidades. Além
+                criarmos uma função para isso, simplesmente observamos a propriedade da combo de municipio e ao ela ser alterada
+                fazemos uma requisição via Ajax em um servidor que retorna os municipios.
+            */
+            contador(novo, antigo) {
+                
+                setTimeout(() => {
+                    this.contador = 0
+                }, 2000)
+            }
+        },
+        methods: {
+            aumentar() {
+                this.contador++
+            },
+            diminuir() {
+                this.contador--
+            }
+            /*
+            Deve ser chamado como uma função (resultado() ) e não como um atributo (resulado)
+            Chamado toda vez que uma função é chamada. 
+            resultado() {
+                console.log('metodo computed resultado chamado...')
+                return this.contador >= 5 ?
+                    'Maior ou igual a 5' : 'Menor que 5'
+            }
+            */
+        }
+    })
+</script>
